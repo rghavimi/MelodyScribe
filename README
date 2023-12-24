@@ -1,0 +1,9 @@
+git add heroku.yml
+git commit -m "Add heroku.yml"
+
+Set your app’s stack to container.
+heroku stack:set container
+
+Push your app to Heroku.
+git push heroku HEAD:master
+
