@@ -9,7 +9,6 @@ import os
 app = Flask(__name__, static_url_path='')
 
 # Configure these paths using environment variables or a configuration file
-MUSICXML_PATH = os.environ.get('MUSICXML_PATH', '/Applications/MuseScore 3.app/Contents/MacOS/mscore')
 MUSESCORE_PATH = os.environ.get('MUSESCORE_PATH', '/Applications/MuseScore 3.app/Contents/MacOS/mscore')
 
 
