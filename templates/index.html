@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MelodyScribe - MIDI to Sheet Music</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='assets/favicon.png') }}" type="image/png">
 </head>
 <body>
     <div class="container">
@@ -17,7 +18,7 @@
             <form action="/predict" method="post" enctype="multipart/form-data" id="uploadForm">
                 <div class="file-upload-wrapper">
                     <input type="file" name="file" id="file" accept=".mid,.midi">
-                    <span id="file-chosen">Choose MIDI File</span>
+                    <span id="file-chosen">Choose a MIDI File</span>
                 </div>
                 <button type="submit" class="convert-button">Convert</button>
             </form>
