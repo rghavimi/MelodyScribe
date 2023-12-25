@@ -45,6 +45,11 @@ def predict():
             music_pdf_path = os.path.join(temp_dir, "music.pdf")
 
             score.write('musicxml', music_xml_path)
+            if os.path.exists(music_xml_path):
+                print(f"File {music_xml_path} exists.")
+            else:
+                print(f"File {music_xml_path} does not exist.")
+
             subprocess.run([MUSESCORE_PATH, music_xml_path, '-o', music_pdf_path])
 
             return send_file(music_pdf_path, as_attachment=True)
