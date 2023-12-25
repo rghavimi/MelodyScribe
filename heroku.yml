@@ -1,6 +1,7 @@
 setup:
   config:
     MUSESCORE_PATH: /usr/bin/mscore
+    HEADLESS_MODE_ENABLED: True
 build:
   docker:
     web: Dockerfile

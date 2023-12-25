@@ -15,7 +15,10 @@ app = Flask(__name__, static_url_path='')
 
 # Get the path from environment variable, or use the default for local development
 MUSESCORE_PATH = os.environ.get('MUSESCORE_PATH', '/Applications/MuseScore 3.app/Contents/MacOS/mscore')
-os.environ["QT_QPA_PLATFORM"] = "offscreen"
+HEADLESS_MODE_ENABLED = os.environ.get('HEADLESS_MODE_ENABLED', False)
+
+if HEADLESS_MODE_ENABLED:
+    os.environ["QT_QPA_PLATFORM"] = "offscreen"
 
 @app.route("/")
 def root():
