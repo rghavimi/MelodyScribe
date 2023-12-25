@@ -3,8 +3,13 @@ from werkzeug.utils import secure_filename
 from music21 import *
 import subprocess
 import tempfile
-import os
+import logging
 import sys
+import os
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger('MelodyScribe')
 
 app = Flask(__name__, static_url_path='')
 
@@ -19,8 +24,7 @@ def root():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    print("PRINT STATEMENTS WORK")
-    sys.stdout.flush()
+    logger.info("PRINT STATEMENTS WORK")
     # Check if the post request has the file part
     if 'file' not in request.files:
         return abort(400, 'No file part')
@@ -48,9 +52,9 @@ def predict():
 
             score.write('musicxml', music_xml_path)
             if os.path.exists(music_xml_path):
-                print(f"File {music_xml_path} exists.")
+                logger.info(f"File {music_xml_path} exists.")
             else:
-                print(f"File {music_xml_path} does not exist.")
+                logger.error(f"File {music_xml_path} does not exist.")
 
             sys.stdout.flush()
             subprocess.run([MUSESCORE_PATH, music_xml_path, '-o', music_pdf_path])
@@ -69,5 +73,6 @@ def download_file():
 
 
 if __name__ == "__main__":
+    logger.info("MelodyScribe has started...")
     port = int(os.environ.get('PORT', 5001))
     app.run(host="0.0.0.0", port=port, debug=True)
