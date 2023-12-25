@@ -19,6 +19,7 @@ def root():
 
 @app.route('/predict', methods=['POST'])
 def predict():
+    print("PRINT STATEMENTS WORK")
     # Check if the post request has the file part
     if 'file' not in request.files:
         return abort(400, 'No file part')
