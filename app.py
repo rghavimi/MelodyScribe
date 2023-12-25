@@ -4,7 +4,7 @@ from music21 import *
 import subprocess
 import tempfile
 import os
-
+import sys
 
 app = Flask(__name__, static_url_path='')
 
@@ -20,6 +20,7 @@ def root():
 @app.route('/predict', methods=['POST'])
 def predict():
     print("PRINT STATEMENTS WORK")
+    sys.stdout.flush()
     # Check if the post request has the file part
     if 'file' not in request.files:
         return abort(400, 'No file part')
@@ -51,6 +52,7 @@ def predict():
             else:
                 print(f"File {music_xml_path} does not exist.")
 
+            sys.stdout.flush()
             subprocess.run([MUSESCORE_PATH, music_xml_path, '-o', music_pdf_path])
 
             return send_file(music_pdf_path, as_attachment=True)
