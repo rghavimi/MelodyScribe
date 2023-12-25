@@ -24,7 +24,6 @@ def root():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    logger.info("PRINT STATEMENTS WORK")
     # Check if the post request has the file part
     if 'file' not in request.files:
         return abort(400, 'No file part')
@@ -56,8 +55,11 @@ def predict():
             else:
                 logger.error(f"File {music_xml_path} does not exist.")
 
-            sys.stdout.flush()
             subprocess.run([MUSESCORE_PATH, music_xml_path, '-o', music_pdf_path])
+            if os.path.exists(music_pdf_path):
+                logger.info(f"File {music_pdf_path} exists.")
+            else:
+                logger.error(f"File {music_pdf_path} does not exist.")
 
             return send_file(music_pdf_path, as_attachment=True)
 
@@ -73,6 +75,5 @@ def download_file():
 
 
 if __name__ == "__main__":
-    logger.info("MelodyScribe has started...")
     port = int(os.environ.get('PORT', 5001))
     app.run(host="0.0.0.0", port=port, debug=True)
