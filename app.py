@@ -43,6 +43,13 @@ def predict():
             file.save(file_path)
 
             score = converter.parse(file_path)
+
+            # Set the title in the score's metadata
+            score_metadata = metadata.Metadata()
+            score_metadata.title = os.path.splitext(file.filename)[0]
+            score_metadata.copyright = "© 2023 MelodyScribe"
+            score.metadata = score_metadata
+
             for element in score.recurse():
                 if isinstance(element, note.Note):
                     # For single notes, add the pitch name as a lyric
