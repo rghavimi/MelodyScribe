@@ -43,11 +43,14 @@ def predict():
             file.save(file_path)
 
             score = converter.parse(file_path)
-            for note in score.recurse().notes:
-                try:
-                    note.addLyric(note.pitch.name)
-                except:
-                    continue
+            for element in score.recurse():
+                if isinstance(element, note.Note):
+                    # For single notes, add the pitch name as a lyric
+                    element.addLyric(element.pitch.name)
+                elif isinstance(element, chord.Chord):
+                    # For chords, concatenate the names of all notes in the chord
+                    chord_notes = '\n'.join(note.name for note in element.notes)
+                    element.addLyric(chord_notes)
 
             music_xml_path = os.path.join(temp_dir, "music.xml")
             music_pdf_path = os.path.join(temp_dir, "music.pdf")
