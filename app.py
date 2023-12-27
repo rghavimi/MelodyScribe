@@ -1,4 +1,4 @@
-from flask import Flask, request, send_from_directory, render_template, send_file, abort
+from flask import Flask, request, render_template, send_file, abort
 from werkzeug.utils import secure_filename
 from music21 import *
 import subprocess
@@ -53,16 +53,7 @@ def predict():
             music_pdf_path = os.path.join(temp_dir, "music.pdf")
 
             score.write('musicxml', music_xml_path)
-            if os.path.exists(music_xml_path):
-                logger.info(f"File {music_xml_path} exists.")
-            else:
-                logger.error(f"File {music_xml_path} does not exist.")
-
             subprocess.run([MUSESCORE_PATH, music_xml_path, '-o', music_pdf_path])
-            if os.path.exists(music_pdf_path):
-                logger.info(f"File {music_pdf_path} exists.")
-            else:
-                logger.error(f"File {music_pdf_path} does not exist.")
 
             return send_file(music_pdf_path, as_attachment=True)
 
@@ -72,11 +63,6 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in {'mid', 'midi'}
 
 
-@app.route('/download')
-def download_file():
-    return send_from_directory('', 'Result-1.png', as_attachment=True)
-
-
 if __name__ == "__main__":
-    port = int(os.environ.get('PORT', 5001))
+    port = int(os.environ.get('PORT', 5002))
     app.run(host="0.0.0.0", port=port, debug=True)
