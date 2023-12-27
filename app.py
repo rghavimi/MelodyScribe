@@ -13,6 +13,9 @@ logger = logging.getLogger(__name__)
 
 app = Flask(__name__, static_url_path='')
 
+MAX_FILENAME_SIZE = 40
+MELODY_SCRIBE_COPYRIGHT = "© 2023 MelodyScribe"
+
 # Get the path from environment variable, or use the default for local development
 MUSESCORE_PATH = os.environ.get('MUSESCORE_PATH', '/Applications/MuseScore 3.app/Contents/MacOS/mscore')
 HEADLESS_MODE_ENABLED = os.environ.get('HEADLESS_MODE_ENABLED', False)
@@ -43,11 +46,12 @@ def predict():
             file.save(file_path)
 
             score = converter.parse(file_path)
+            file_name_without_extension = os.path.splitext(file.filename)[0][:MAX_FILENAME_SIZE]
 
             # Set the title in the score's metadata
             score_metadata = metadata.Metadata()
-            score_metadata.title = os.path.splitext(file.filename)[0]
-            score_metadata.copyright = "© 2023 MelodyScribe"
+            score_metadata.title = file_name_without_extension
+            score_metadata.copyright = MELODY_SCRIBE_COPYRIGHT
             score.metadata = score_metadata
 
             for element in score.recurse():
@@ -60,7 +64,7 @@ def predict():
                     element.addLyric(chord_notes)
 
             music_xml_path = os.path.join(temp_dir, "music.xml")
-            music_pdf_path = os.path.join(temp_dir, "music.pdf")
+            music_pdf_path = os.path.join(temp_dir, f"{file_name_without_extension}.pdf")
 
             score.write('musicxml', music_xml_path)
             subprocess.run([MUSESCORE_PATH, music_xml_path, '-o', music_pdf_path])
