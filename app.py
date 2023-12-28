@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, send_file, abort
-from werkzeug.utils import secure_filename
+from werkzeug.utils import secure_filename, send_from_directory
 from music21 import *
 import subprocess
 import tempfile
@@ -23,9 +23,15 @@ HEADLESS_MODE_ENABLED = os.environ.get('HEADLESS_MODE_ENABLED', False)
 if HEADLESS_MODE_ENABLED:
     os.environ["QT_QPA_PLATFORM"] = "offscreen"
 
+
 @app.route("/")
 def root():
     return render_template('index.html')
+
+
+@app.route('/robots.txt')
+def serve_robots_txt():
+    return send_file('static/robots.txt', mimetype='text/plain')
 
 
 @app.route('/predict', methods=['POST'])
