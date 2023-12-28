@@ -1,6 +1,7 @@
-from flask import Flask, request, render_template, send_file, abort
+from flask import Flask, request, render_template, send_file, abort, redirect
 from werkzeug.utils import secure_filename
 from flask_talisman import Talisman
+from urllib.parse import urlunparse
 from music21 import *
 import subprocess
 import tempfile
@@ -19,6 +20,8 @@ Talisman(app, content_security_policy=None)
 
 MAX_FILENAME_SIZE = 40
 MELODY_SCRIBE_COPYRIGHT = "© 2023 MelodyScribe"
+WWW_URL = "www.melodyscribe.com"
+NON_WWW_URL = "melodyscribe.com"
 
 # Get the path from environment variable, or use the default for local development
 MUSESCORE_PATH = os.environ.get('MUSESCORE_PATH', '/Applications/MuseScore 3.app/Contents/MacOS/mscore')
@@ -26,6 +29,15 @@ HEADLESS_MODE_ENABLED = os.environ.get('HEADLESS_MODE_ENABLED', False)
 
 if HEADLESS_MODE_ENABLED:
     os.environ["QT_QPA_PLATFORM"] = "offscreen"
+
+
+@app.before_request
+def redirect_non_www():
+    url_parts = request.urlparts
+    if url_parts.netloc == NON_WWW_URL:
+        url_parts_list = list(url_parts)
+        url_parts_list[1] = WWW_URL
+        return redirect(urlunparse(url_parts_list), code=301)
 
 
 @app.route("/")
