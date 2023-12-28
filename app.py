@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, send_file, abort
-from werkzeug.utils import secure_filename, send_from_directory
+from werkzeug.utils import secure_filename
+from flask_talisman import Talisman
 from music21 import *
 import subprocess
 import tempfile
@@ -12,6 +13,9 @@ logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__, static_url_path='')
+
+# Enforces security protocols (e.g. http -> https, etc.)
+Talisman(app, content_security_policy=None)
 
 MAX_FILENAME_SIZE = 40
 MELODY_SCRIBE_COPYRIGHT = "© 2023 MelodyScribe"
