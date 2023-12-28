@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template, send_file, abort
+from urllib.parse import urlparse, urlunparse
 from werkzeug.utils import secure_filename
 from flask_talisman import Talisman
 from music21 import *
@@ -36,6 +37,15 @@ def root():
 @app.route('/robots.txt')
 def serve_robots_txt():
     return send_file('static/robots.txt', mimetype='text/plain')
+
+
+@app.before_request
+def redirect_non_www():
+    urlparts = urlparse(request.url)
+    if urlparts.netloc == 'melodyscribe.com':
+        urlparts_list = list(urlparts)
+        urlparts_list[1] = 'www.melodyscribe.com'
+        return redirect(urlunparse(urlparts_list), code=301)
 
 
 @app.route('/predict', methods=['POST'])
