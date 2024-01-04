@@ -1,75 +1,73 @@
 body {
     font-family: 'Verdana', sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
 }
 
-.container {
-    text-align: center;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+header.masthead {
+    position: relative;
+    background-color: #343a40;
+    background: url("../assets/bg-masthead.jpg") no-repeat center center;
+    background-size: cover;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
 }
-
-.bg-video {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    z-index: -1;
-}
-
-.bg-image {
-    /* styles for background image */
-    display: none; /* initially hidden */
-    position: fixed;
+header.masthead:before {
+    content: "";
+    position: absolute;
+    background-color: #1c375e;
+    height: 100%;
+    width: 100%;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    object-fit: cover; /* ensures the image covers the full view */
+    opacity: 0.5;
 }
-
-@media only screen and (max-width: 768px) { /* adjust max-width as needed */
-    #bg-video {
-        display: none; /* hide the video on mobile */
+header.masthead h1, header.masthead .h1 {
+    font-size: 2rem;
+}
+@media (min-width: 768px) {
+    header.masthead {
+        padding-top: 12rem;
+        padding-bottom: 12rem;
     }
-    #bg-image {
-        display: block; /* display the image on mobile */
+    header.masthead h1, header.masthead .h1 {
+        font-size: 3rem;
     }
 }
 
-header h1 {
-    margin: 0;
-    color: #333;
+.features-icons {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+}
+.features-icons .features-icons-item {
+    max-width: 20rem;
+}
+.features-icons .features-icons-item .features-icons-icon {
+    height: 7rem;
+}
+.features-icons .features-icons-item .features-icons-icon i {
+    font-size: 4.5rem;
 }
 
-header p {
-    color: #666;
+.content-wrapper {
+    background-color: white;
+    text-align: center;
+    padding: 20px;
+    color: #212529;
+    border-radius: 20px;
 }
 
 .file-upload-wrapper {
-    margin: 20px 0;
+    margin: auto;
+    margin-bottom: 20px;
     position: relative;
     width: 300px;
     height: 40px;
     line-height: 40px;
-    text-align: left;
+    text-align: center;
     background: #fff;
     border: 2px solid #ddd;
     border-radius: 4px;
     overflow: hidden;
 }
-
 .file-upload-wrapper input[type="file"] {
     position: absolute;
     width: 100%;
@@ -79,7 +77,6 @@ header p {
     opacity: 0;
     cursor: pointer;
 }
-
 .file-upload-wrapper label {
     display: block;
     padding: 0 10px;
@@ -87,9 +84,13 @@ header p {
     color: #333;
     cursor: pointer;
 }
+#file-chosen {
+    margin-left: 10px;
+    color: #666;
+}
 
 .convert-button {
-    background-color: #4CAF50;
+    background-color: #007bff;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -97,29 +98,24 @@ header p {
     cursor: pointer;
     font-size: 16px;
 }
-
 .convert-button:hover {
-    background-color: #45a049;
+    background-color: #006fae;
 }
 
-#downloadSection {
-    margin-top: 20px;
+.showcase .showcase-text {
+  padding: 3rem;
+}
+.showcase .showcase-img {
+  min-height: 30rem;
+  background-size: cover;
+}
+@media (min-width: 768px) {
+  .showcase .showcase-text {
+    padding: 7rem;
+  }
 }
 
-#downloadLink {
-    display: inline-block;
-    background-color: #008CBA;
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 4px;
-}
-
-#downloadLink:hover {
-    background-color: #0077A7;
-}
-
-#file-chosen {
-    margin-left: 10px;
-    color: #666;
+footer.footer {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }

@@ -18,33 +18,93 @@
     <link rel="canonical" href="https://www.melodyscribe.com/">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <link rel="icon" href="{{ url_for('static', filename='assets/favicon.png') }}" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6896113988459838" crossorigin="anonymous"></script>
 </head>
 <body>
-    <video autoplay muted loop class="bg-video">
-        <source src="{{ url_for('static', filename='assets/bgvideo.mp4') }}" type="video/mp4">
-        Your browser does not support HTML5 video.
-    </video>
-    <img src="{{ url_for('static', filename='assets/bgimage.jpg') }}" class="bg-image" id="bg-image" alt="Piano keys and musical notes background image for MelodyScribe">
-    <div class="container">
-        <header>
-            <h1>MelodyScribe</h1>
-            <p>Convert MIDI Files to Annotated Sheet Music.</p>
-        </header>
-
-        <main>
-            <form action="/predict" method="post" enctype="multipart/form-data" id="uploadForm">
-                <div class="file-upload-wrapper">
-                    <input type="file" name="file" id="file" accept=".mid,.midi">
-                    <span id="file-chosen">Choose a MIDI File</span>
+    <!-- Masthead-->
+    <header class="masthead">
+        <div class="container position-relative">
+            <div class="row justify-content-center">
+                <div class="col-xl-6">
+                    <div class="content-wrapper">
+                        <div class="text-center">
+                            <!-- Page heading-->
+                            <h1>MelodyScribe</h1>
+                            <h5 class="mb-3">Convert MIDI Files to Annotated Sheet Music.</h5>
+                            <form action="/predict" method="post" enctype="multipart/form-data" id="uploadForm">
+                                <div class="file-upload-wrapper">
+                                    <input type="file" name="file" id="file" accept=".mid,.midi">
+                                    <span id="file-chosen">Choose a MIDI File</span>
+                                </div>
+                                <button type="submit" class="convert-button">Convert</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <button type="submit" class="convert-button">Convert</button>
-            </form>
-        </main>
-        <footer>
-            <p>© 2023 MelodyScribe</p>
-        </footer>
-    </div>
+            </div>
+        </div>
+    </header>
+    <!-- Icons Grid-->
+    <section class="features-icons bg-light text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                        <div class="features-icons-icon d-flex"><i class="bi-file-earmark-arrow-up-fill m-auto text-primary"></i></div>
+                        <h3>Upload Your MIDI File</h3>
+                        <p class="lead mb-0">Begin your music transcription journey by uploading your MIDI file.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                        <div class="features-icons-icon d-flex"><i class="bi-gear m-auto text-primary"></i></div>
+                        <h3>Automatic Conversion</h3>
+                        <p class="lead mb-0">Leveraging advanced algorithms, MelodyScribe transforms your MIDI file into annotated sheet music.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+                        <div class="features-icons-icon d-flex"><i class="bi-music-note-list m-auto text-primary"></i></div>
+                        <h3>Practice with Precision</h3>
+                        <p class="lead mb-0">Immerse yourself in your music without the hassle of manual transcription.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Image Showcases-->
+    <section class="showcase">
+        <div class="container-fluid p-0">
+            <div class="row g-0">
+                <div class="col-lg-6 text-white showcase-img" style="background-image: url('assets/sample-result.png');"></div>
+                <div class="col-lg-6 my-auto showcase-text">
+                    <h2>Transform your MIDI compositions</h2>
+                    <p class="lead mb-0">Perfect for budding pianists and intermediate-level players, our tool simplifies your practice sessions, helping you master each note with precision and ease.</p>
+                </div>
+            </div>
+            <div class="row g-0">
+                <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/journey.png')"></div>
+                <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                    <h2>Follow the Journey</h2>
+                    <p class="lead mb-0"> The goal was to create an accessible tool for piano players. For more context, follow the path <a href="https://twitter.com/RGhavimi/status/1740877300684722623">here</a>. Feel free to reach out with any feedback!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
+                    <p class="text-muted small mb-4 mb-lg-0">&copy; MelodyScribe 2024. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
