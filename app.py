@@ -37,6 +37,9 @@ def root():
 def serve_robots_txt():
     return send_file('static/robots.txt', mimetype='text/plain')
 
+@app.route("/privacy-policy")
+def serve_privacy_policy():
+    return render_template('privacy-policy.html')
 
 @app.route('/predict', methods=['POST'])
 def predict():
