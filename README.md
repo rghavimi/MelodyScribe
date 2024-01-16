@@ -21,7 +21,7 @@
 
 ### ✨ [Demo](https://www.melodyscribe.com/)
 
-![Uploading MelodyScribeDemo-ezgif.com-video-to-gif-converter.gif…]()
+https://github.com/rghavimi/MelodyScribe/assets/12361146/07561306-70ff-4a86-942f-5d587cf1e6d2
 
 ## Author
 
