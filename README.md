@@ -21,7 +21,9 @@
 
 ### ✨ [Demo](https://www.melodyscribe.com/)
 
-https://github.com/rghavimi/MelodyScribe/assets/12361146/07561306-70ff-4a86-942f-5d587cf1e6d2
+
+https://github.com/rghavimi/MelodyScribe/assets/12361146/d30fabf9-ce9a-4952-88c1-6507417080bf
+
 
 ## Author
 
