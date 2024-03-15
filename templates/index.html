@@ -12,15 +12,13 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MelodyScribe: Convert MIDI to Annotated Sheet Music Easily</title>
-    <meta name="description" content="MelodyScribe converts your MIDI files into sheet music annotated with letter notes. Easy, fast, and accurate MIDI to annotated sheet music conversion.">
-    <meta name="google-adsense-account" content="ca-pub-6896113988459838">
+    <title>MelodyScribe: Convert MIDI or PDF files to Annotated Sheet Music Easily</title>
+    <meta name="description" content="MelodyScribe converts your MIDI or PDF files into sheet music annotated with letter notes. Easy, fast, and accurate MIDI/PDF to annotated sheet music conversion.">
     <link rel="canonical" href="https://www.melodyscribe.com/">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <link rel="icon" href="{{ url_for('static', filename='assets/favicon.png') }}" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6896113988459838" crossorigin="anonymous"></script>
 </head>
 <body>
     <!-- Masthead-->
@@ -32,11 +30,11 @@
                         <div class="text-center">
                             <!-- Page heading-->
                             <h1>MelodyScribe</h1>
-                            <h5 class="mb-3">Convert MIDI Files to Annotated Sheet Music.</h5>
+                            <h5 class="mb-3">Convert various file formats to Annotated Sheet Music.</h5>
                             <form action="/predict" method="post" enctype="multipart/form-data" id="uploadForm">
                                 <div class="file-upload-wrapper">
-                                    <input type="file" name="file" id="file" accept=".mid,.midi">
-                                    <span id="file-chosen">Choose a MIDI File</span>
+                                    <input type="file" id="file" name="file" accept=".mid,.midi,.pdf">
+                                    <span id="file-chosen">Upload a .midi, .mid, or .pdf File</span>
                                 </div>
                                 <button type="submit" class="convert-button">Convert</button>
                             </form>
@@ -53,15 +51,15 @@
                 <div class="col-lg-4">
                     <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
                         <div class="features-icons-icon d-flex"><i class="bi-file-earmark-arrow-up-fill m-auto text-primary"></i></div>
-                        <h3>Upload Your MIDI File</h3>
-                        <p class="lead mb-0">Begin your music transcription journey by uploading your MIDI file.</p>
+                        <h3>Upload Your File</h3>
+                        <p class="lead mb-0">Begin your music transcription journey by uploading your file.</p>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
                         <div class="features-icons-icon d-flex"><i class="bi-gear m-auto text-primary"></i></div>
                         <h3>Automatic Conversion</h3>
-                        <p class="lead mb-0">Leveraging advanced algorithms, MelodyScribe transforms your MIDI file into annotated sheet music.</p>
+                        <p class="lead mb-0">Leveraging advanced algorithms, MelodyScribe transforms your file into annotated sheet music.</p>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -80,7 +78,7 @@
             <div class="row g-0">
                 <div class="col-lg-6 text-white showcase-img" style="background-image: url('assets/sample-result.png');" alt="Sheet music with letter notes"></div>
                 <div class="col-lg-6 my-auto showcase-text">
-                    <h2>Transform your MIDI compositions</h2>
+                    <h2>Transform your compositions</h2>
                     <p class="lead mb-0">Perfect for budding pianists and intermediate-level players, our tool simplifies your practice sessions, helping you master each note with precision and ease.</p>
                 </div>
             </div>
@@ -123,7 +121,7 @@
                             <i class="bi-file-music m-auto"></i>
                         </div>
                         <h3>Unlimited Conversions</h3>
-                        <p class="lead mb-0">Enjoy unlimited conversions without any restrictions.</p>
+                        <p class="lead mb-0 text-light">Enjoy unlimited conversions without any restrictions.</p>
                     </div>
                 </div>
             </div>
