@@ -20,8 +20,9 @@ RUN add-apt-repository ppa:mscore-ubuntu/mscore-stable -y && \
 COPY . /app
 
 RUN chmod +x pdftomusicpro-1.7.6d.0.run && \
-    printf '\n' | ./pdftomusicpro-1.7.6d.0.run \
-    rm pdftomusicpro-1.7.6d.0.run
+    printf '\n' | ./pdftomusicpro-1.7.6d.0.run && \
+    rm pdftomusicpro-1.7.6d.0.run && \
+    printf '\n' | ./pdftomusicpro-1.7.6d.0/scripts/process.sh
 
 # Install any needed packages specified in requirements.txt
 RUN python3 -m pip install --no-cache-dir -r requirements.txt
