@@ -21,7 +21,7 @@ MAX_FILENAME_SIZE = 40
 MELODY_SCRIBE_COPYRIGHT = "© 2023 MelodyScribe"
 
 # Get the path from environment variable, or use the default for local development
-PDF_TO_MUSIC_PATH = os.environ.get('PDF_TO_MUSIC_PATH', 'usr/bin/PDFtoMusic Pro')
+PDF_TO_MUSIC_PATH = os.environ.get('PDF_TO_MUSIC_PATH', '/Applications/PDFtoMusic Pro.app/Contents/MacOS/PDFtoMusic')
 MUSESCORE_PATH = os.environ.get('MUSESCORE_PATH', '/Applications/MuseScore 3.app/Contents/MacOS/mscore')
 HEADLESS_MODE_ENABLED = os.environ.get('HEADLESS_MODE_ENABLED', False)
 
