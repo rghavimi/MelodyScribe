@@ -24,7 +24,7 @@ RUN chmod +x pdftomusicpro-1.7.6d.0.run && \
     cp -a /app/pdftomusicpro-1.7.6d.0/InstallFiles/usr/share/. /usr/share/ && \
     mkdir /usr/share/'PDFtoMusic Pro x64' && \
     cp -a /usr/share/'PDFtoMusic Pro'/. /usr/share/'PDFtoMusic Pro x64'/ && \
-    rm /app/pdftomusicpro-1.7.6d.0
+    rm -r /app/pdftomusicpro-1.7.6d.0
 
 # Install any needed packages specified in requirements.txt
 RUN python3 -m pip install --no-cache-dir -r requirements.txt
