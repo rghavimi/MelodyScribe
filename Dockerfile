@@ -1,5 +1,5 @@
 # Use a specific Ubuntu version
-FROM --platform=linux/amd64 ubuntu:20.04
+FROM ubuntu:20.04
 
 # Set the working directory in the container
 WORKDIR /app
@@ -8,10 +8,7 @@ WORKDIR /app
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     python3 \
     python3-pip \
-    software-properties-common \
-    wget \
-    libc6 \
-    libstdc++6
+    software-properties-common
 
 # Add the MuseScore PPA and install MuseScore
 RUN add-apt-repository ppa:mscore-ubuntu/mscore-stable -y && \
@@ -36,8 +33,7 @@ EXPOSE 80
 
 # Define environment variable
 ENV NAME World
-
-ENV PORT 80
+ENV PORT 5002
 
 # Run app.py when the container launches
 CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 app:app
