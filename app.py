@@ -60,7 +60,8 @@ def predict():
             return convert_midi_to_annotated_pdf(file)
         else:
             return convert_pdf_to_annotated_pdf(file)
-    except:
+    except Exception as e:
+        print(repr(e))
         abort(400, "Please ensure the file uploaded is piano specific.")
 
 
