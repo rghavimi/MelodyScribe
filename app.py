@@ -55,14 +55,10 @@ def predict():
     if file.filename == '':
         return abort(400, 'No selected file')
 
-    try:
-        if is_midi(file.filename):
-            return convert_midi_to_annotated_pdf(file)
-        else:
-            return convert_pdf_to_annotated_pdf(file)
-    except Exception as e:
-        print(repr(e))
-        abort(400, "Please ensure the file uploaded is piano specific.")
+    if is_midi(file.filename):
+        return convert_midi_to_annotated_pdf(file)
+    else:
+        return convert_pdf_to_annotated_pdf(file)
 
 
 def convert_midi_to_annotated_pdf(file):
