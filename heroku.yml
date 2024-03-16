@@ -1,7 +1,7 @@
 setup:
   config:
     MUSESCORE_PATH: /usr/bin/mscore
-    PDF_TO_MUSIC_PATH: /app/pdftomusicpro-1.7.6d.0/InstallFiles/usr/bin/PDFtoMusic Pro x64
+    PDF_TO_MUSIC_PATH: /usr/bin/PDFtoMusic Pro x64
     HEADLESS_MODE_ENABLED: True
 build:
   docker:
