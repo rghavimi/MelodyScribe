@@ -67,16 +67,16 @@ def convert_midi_to_annotated_pdf(file):
 
     filename = secure_filename(file.filename)
     with tempfile.TemporaryDirectory() as temp_dir:
-        file_path = os.path.join(temp_dir, filename)
+        file_path = os.path.join('/app/', filename)
         file.save(file_path)
 
         score = converter.parse(file_path)
         filename_without_extension = os.path.splitext(file.filename)[0][:MAX_FILENAME_SIZE]
-        music_xml_path = os.path.join(temp_dir, "music.xml")
+        music_xml_path = os.path.join('/app/', "music.xml")
 
         annotate_music_xml(score, filename_without_extension, music_xml_path)
 
-        music_pdf_path = os.path.join(temp_dir, f"{filename_without_extension}.pdf")
+        music_pdf_path = os.path.join('/app/', f"{filename_without_extension}.pdf")
         subprocess.run([MUSESCORE_PATH, music_xml_path, '-o', music_pdf_path])
 
         return send_file(music_pdf_path, as_attachment=True)
