@@ -1,5 +1,5 @@
 # Use a specific Ubuntu version
-FROM ubuntu:20.04
+FROM --platform=linux/amd64 ubuntu:20.04
 
 # Set the working directory in the container
 WORKDIR /app
@@ -10,6 +10,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     python3-pip \
     software-properties-common \
     wget \
+    libc6 \
     libstdc++6
 
 # Add the MuseScore PPA and install MuseScore
@@ -20,9 +21,8 @@ RUN add-apt-repository ppa:mscore-ubuntu/mscore-stable -y && \
 COPY . /app
 
 RUN chmod +x pdftomusicpro-1.7.6d.0.run && \
-    printf '\n' | ./pdftomusicpro-1.7.6d.0.run && \
-    rm pdftomusicpro-1.7.6d.0.run && \
-    printf '\n' | ./pdftomusicpro-1.7.6d.0/scripts/process.sh
+    printf 'Y' | ./pdftomusicpro-1.7.6d.0.run && \
+    rm pdftomusicpro-1.7.6d.0.run
 
 # Install any needed packages specified in requirements.txt
 RUN python3 -m pip install --no-cache-dir -r requirements.txt
