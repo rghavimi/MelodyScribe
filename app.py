@@ -17,7 +17,7 @@ app = Flask(__name__, static_url_path='')
 # Enforces security protocols (e.g. http -> https, etc.)
 Talisman(app, content_security_policy=None)
 
-MAX_FILENAME_SIZE = 40
+MAX_FILENAME_SIZE = 20
 MELODY_SCRIBE_COPYRIGHT = "© 2023 MelodyScribe"
 
 # Get the path from environment variable, or use the default for local development
@@ -65,7 +65,11 @@ def convert_midi_to_annotated_pdf(file):
     if not is_midi(file.filename):
         return abort(400, 'Must be a .mid or .midi file.')
 
-    filename = secure_filename(file.filename)
+    original_filename = secure_filename(file.filename)
+    filename_without_extension = os.path.splitext(original_filename)[0][:MAX_FILENAME_SIZE]
+    extension = os.path.splitext(original_filename)[1]
+    filename = f"{filename_without_extension}{extension}"
+
     with tempfile.TemporaryDirectory() as temp_dir:
         file_path = os.path.join(temp_dir, filename)
         file.save(file_path)
@@ -86,8 +90,11 @@ def convert_pdf_to_annotated_pdf(file):
     if not is_pdf(file.filename):
         return abort(400, 'Must be a .mid or .midi file.')
 
-    filename = secure_filename(file.filename)
-    filename_without_extension = os.path.splitext(file.filename)[0][:MAX_FILENAME_SIZE]
+    original_filename = secure_filename(file.filename)
+    filename_without_extension = os.path.splitext(original_filename)[0][:MAX_FILENAME_SIZE]
+    extension = os.path.splitext(original_filename)[1]
+    filename = f"{filename_without_extension}{extension}"
+
     with tempfile.TemporaryDirectory() as temp_dir:
         file_path = os.path.join(temp_dir, filename)
         file.save(file_path)
